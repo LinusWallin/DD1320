@@ -1,0 +1,54 @@
+
+class DictHash:
+    """
+    Class is for creating hash tables.
+    """
+    def __init__(self, data):
+        """
+
+        :param data: a list of objects
+        """
+        self.hash_dict = {}
+        self.data = data
+        for j in range(len(self.data)):
+            self.store(self.data[j].name, self.data[j])
+
+    def get(self, key):
+        """
+
+        :param key: a string
+        :return: returns the dictionary on an index of a hash value of a key
+        """
+        return self.hash_dict[hash(key)]
+
+    def store(self, key, data):
+        """
+        Method adds new key-value-pairs to the hash table dictionary using hashed keys
+        :param key: a string
+        :param data: a list of objects
+        :return: null
+        """
+        self.hash_dict[hash(key)] = data
+
+    def __contains__(self, key):
+        """
+        Magical method checks if a key exists in the hash table dictionary
+        :param key: a string
+        :return: a boolean
+        """
+        if self.get(key) != None:
+            return True
+        else:
+            return False
+    
+    def search(self, key):
+        """
+        Method checks if a key exists in the hash table dictionary (same as magical method but doesn't work on 'in' calls).
+        :param key: a string
+        :return: a boolean
+        """
+        if self.get(key) != None:
+            return self.get(key)
+        else:
+            return False
+    
